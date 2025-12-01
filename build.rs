@@ -31,14 +31,14 @@ fn find_ultralight_lib_dir() -> PathBuf {
     let target_os = env::var("CARGO_CFG_TARGET_OS").unwrap_or_else(|_| String::from("unknown"));
 
     let lib_file_ext = match target_os.as_str() {
-        "windows" => "dll",
+        "windows" => "lib",
         "macos" => "dylib",
         _ => "so", // Linux/others use .so
     };
 
     let lib_prefix = match target_os.as_str() {
         "windows" => "",
-        _ => "so", // Linux/others use lib as prefix
+        _ => "lib", // Linux/others use lib as prefix
     };
 
     // Library files to search for
