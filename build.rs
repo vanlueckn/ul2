@@ -49,6 +49,8 @@ fn find_ultralight_lib_dir() -> PathBuf {
         format!("{}WebCore.{}", lib_prefix, lib_file_ext),
     ];
 
+    println!("Ul path: {}",  env::var("UL_DIR"));
+
     // First check UL_DIR environment variable
     if let Ok(dir) = env::var("UL_DIR") {
         let path = PathBuf::from(dir);
