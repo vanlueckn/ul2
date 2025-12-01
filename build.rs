@@ -36,12 +36,17 @@ fn find_ultralight_lib_dir() -> PathBuf {
         _ => "so", // Linux/others use .so
     };
 
+    let lib_prefix = match target_os.as_str() {
+        "windows" => "",
+        _ => "so", // Linux/others use lib as prefix
+    };
+
     // Library files to search for
     let required_libs = [
-        format!("libUltralight.{}", lib_file_ext),
-        format!("libAppCore.{}", lib_file_ext),
-        format!("libUltralightCore.{}", lib_file_ext),
-        format!("libWebCore.{}", lib_file_ext),
+        format!("{}Ultralight.{}", lib_prefix, lib_file_ext),
+        format!("{}AppCore.{}", lib_prefix, lib_file_ext),
+        format!("{}UltralightCore.{}", lib_prefix, lib_file_ext),
+        format!("{}WebCore.{}", lib_prefix, lib_file_ext),
     ];
 
     // First check UL_DIR environment variable
